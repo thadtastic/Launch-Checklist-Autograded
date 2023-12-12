@@ -64,10 +64,11 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     }
     cargoStatus = document.getElementById("cargoStatus")
-    if (cargoLevel > 10000) {
+    if (cargoLevel >= 10000 && fuelLevel >= 10000) {
         list.style.visibility = "visible"
         cargoStatus.innerHTML = `Cargo mass too heavy for launch`
         launchStatus.innerHTML = `Shuttle Not Ready for Launch`
+        fuelStatus.innerHTML = "Fuel level high enough for launch"
         launchStatus.style.color = "red"
     }    
     if(fuelLevel >= 10000 && cargoLevel <= 10000) {
@@ -92,7 +93,8 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
-    let index = math.floor(math.random * planets.length);
+    //google random number selector
+    let index = Math.floor(Math.random() * planets.length);
     return planets[index]
 }
 
